@@ -68,12 +68,12 @@ app.delete('/api/persons/:id', (request, response, next) => {
 });
 
 app.put('/api/persons/:id', (request, response, next) => {
-  const { number } = request.body;
+  const { name, number } = request.body;
 
   Person.findByIdAndUpdate(
     request.params.id,
-    { number },
-    { new: true, runVaildators: true, context: 'query'}
+    { name, number },
+    { new: true, runValidators: true, context: 'query' }
   )
     .then(updatedPerson => {
       response.json(updatedPerson);
